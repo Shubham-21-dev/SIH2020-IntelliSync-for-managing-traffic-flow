@@ -8,8 +8,6 @@ A framework where a deep Q-Learning Reinforcement Learning agent tries to choose
 It uses deep reinforcement learning to come with a policy function to identify pairs or groups of traffic signals which can be coordinated. It synchronises traffic signal timings to optimize split, cycle, and offset time.
 Image Recognition is used to detect the presence of vehicles. One traffic signal will be aware of its adjacent traffic signal state and the number of vehicles arriving and departing there, which will help it make efficient decisions about when to release traffic, in which direction, and for how much time.
 
-Whereas reinforcement learning is still a very active research area significant progress has been made to advance the field and apply it in real life.
-
 ## *Improved version - "3 August 2020*
 
 *Changelog:*
@@ -137,5 +135,6 @@ In NLP, RL can be used in text summarization, question answering, and machine tr
 
 4. Applications in Healthcare:
 
-**Future Enhancements**
+# Future Enhancements
 Training the NN over network consisting of multiple intersections linked together. As the number of states and actions were greater,and it required long time to train the algorithm,this was a challenge for us. We are working on optimal solution for this problem.
+Whereas reinforcement learning is still a very active research area significant progress has been made to advance the field and apply it in real life.
