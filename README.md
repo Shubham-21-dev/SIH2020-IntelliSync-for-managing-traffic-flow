@@ -1,5 +1,5 @@
-# traffic_management_M
-We developed a software solution for smart management of traffic which leads to better travel plans, less stress due to driving, and optimized travel time.
+# ML TO REDUCE TRAFFIC CONGESTION
+Our cities are expanding and most of the people have to travel more than 2 hours daily to commute between their place of work and stay. These things often lead to work-life imbalance, more stress, impact work performance, etc. We are working for a software solution for smart management of traffic which leads to better travel plans, less stress due to driving, and optimized travel time.
 
 # Deep Q-Learning Agent for Traffic Signal Control
 A framework where a deep Q-Learning Reinforcement Learning agent tries to choose the correct traffic light phase at an intersection to maximize traffic efficiency.
