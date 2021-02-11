@@ -8,17 +8,18 @@ A framework where a deep Q-Learning Reinforcement Learning agent tries to choose
 It uses deep reinforcement learning to come with a policy function to identify pairs or groups of traffic signals which can be coordinated. It synchronises traffic signal timings to optimize split, cycle, and offset time.
 Image Recognition is used to detect the presence of vehicles. One traffic signal will be aware of its adjacent traffic signal state and the number of vehicles arriving and departing there, which will help it make efficient decisions about when to release traffic, in which direction, and for how much time.
 
-## *Improved version - "3 August 2020*
+## *Improved version - "20 August 2020*
 
 *Changelog:*
 - *Each training result is now stored in a folder structure, with each result being numbered with an increasing integer.*
 - *New Test Mode: test the model versions you created by running a test episode with comparable results.*
 - *Enabled a dynamic creation of the model by specifying, for each training, the width and the depth of the feedforward neural network that is going to be used.*
-- *The training of the neural network is now executed at the end of each episode, instead of during the episode. This improves the overall speed of the algorithm.*
-- *The code for the neural network is now written using Keras and Tensorflow 2.0.*
+- *The code for the neural network is written using Keras and Tensorflow 2.0.*
 - *Added a settings file (.ini) for both training and testing.*
 - *Added a minimum number of samples required into the memory to begin training.*
 - *Improved code readability.*
+- *Image Recognition for vehicles has been implemneted.*
+
 
 ## Getting Started
 
@@ -121,7 +122,7 @@ The settings used during the testing and contained in the file **testing_setting
 - **Reward**: change in *cumulative waiting time* between actions, where the waiting time of a car is the number of seconds spent with speed=0 since the spawn; *cumulative* means that every waiting time of every car located in an incoming lane is summed. When a car leaves an oncoming lane (i.e. crossed the intersection), its waiting time is not considered anymore, therefore it is a positive reward for the agent.
 - **Learning mechanism**: the agent make use of the Q-learning equation *Q(s,a) = reward + gamma • max Q'(s',a')* to update the action values and a deep neural network to learn the state-action function. The neural network is fully connected with 80 neurons as input (the state), 5 hidden layers of 400 neurons each, and the output layers with 4 neurons representing the 4 possible actions. Also, a mechanism of experience replay is implemented: the experience of the agent is stored in a memory and, at the end of each episode, multiple batches of randomized samples are extracted from the memory and used to train the neural network once the action values have been updated with the Q-learning equation.
 
-**Applications of Reinforcement Learning** :
+# Applications of Reinforcement Learning :
 1. Reinforcement Learning in Gaming: 
 Let’s look at an application in the gaming frontier, specifically AlphaGo Zero. Using reinforcement learning, AlphaGo Zero was able to learn the game of Go from scratch. It learned by playing against itself. After 40 days of self-training, Alpha Go Zero was able to outperform the version of Alpha Go known as Master that has defeated world number one Ke Jie. It only used black and white stones from the board as input features and a single neural network. A simple tree search that relies on the single neural network is used to evaluate positions moves and sample moves without using any Monte Carlo rollouts. 
 
