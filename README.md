@@ -64,6 +64,7 @@ Overall the algorithm is divided into classes that handle different parts of the
 - The **TrafficGenerator** class contains the function dedicated to defining the route of every vehicle in one episode. The file created is *episode_routes.rou.xml* which is placed in the "intersection" folder.
 - The **Visualization** class is just used for plotting data.
 - In the **utils.py** file are contained some directory-related functions, such as automatically handle the creations of new model versions and the loading of existing models for the testing.
+- The **movementdetection.py** file contains the code to detect vehicle presence, for semantic segmentation, and creating velocity and position matrices.
 
 In the "intersection" folder there is a file called *environment.net.xml* which defines the structure of the environment, and it was created using SUMO NetEdit. The other file *sumo_config.sumocfg* it is a linker between the environment file and the route file. 
 
