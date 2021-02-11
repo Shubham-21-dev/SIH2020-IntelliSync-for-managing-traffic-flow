@@ -136,5 +136,6 @@ In NLP, RL can be used in text summarization, question answering, and machine tr
 4. Applications in Healthcare:
 
 # Future Enhancements
-Training the NN over network consisting of multiple intersections linked together. As the number of states and actions were greater,and it required long time to train the algorithm,this was a challenge for us. We are working on optimal solution for this problem.
-Whereas reinforcement learning is still a very active research area significant progress has been made to advance the field and apply it in real life.
+Training the NN over network consisting of multiple intersections linked together.
+- Time constraints have prevented us from being able to analyze our approach when multiple intersections are present. It would be interesting to see if the same state-action pairs (Q values) would be learned or if the presence of multiple nodes would cause these to change. Permitted more time we could expand this simulation scope and possibly consider implementing other state values apart from just the vehicle position and velocity matrices, for example, allowing an intersection to see the states of its neighbors. Such increases in state-space could prove beneficial to improving traffic flow, but can also greatly increase learning time.
+Reinforcement learning is still a very active research area significant progress has been made to advance the field and apply it in real life.
