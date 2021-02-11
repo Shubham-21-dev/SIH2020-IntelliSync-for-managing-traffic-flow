@@ -140,3 +140,15 @@ In NLP, RL can be used in text summarization, question answering, and machine tr
 Training the NN over network consisting of multiple intersections linked together.
 - Time constraints have prevented us from being able to analyze our approach when multiple intersections are present. It would be interesting to see if the same state-action pairs (Q values) would be learned or if the presence of multiple nodes would cause these to change. Permitted more time we could expand this simulation scope and possibly consider implementing other state values apart from just the vehicle position and velocity matrices, for example, allowing an intersection to see the states of its neighbors. Such increases in state-space could prove beneficial to improving traffic flow, but can also greatly increase learning time.
 Reinforcement learning is still a very active research area significant progress has been made to advance the field and apply it in real life.
+- to deploy this model as API in working application
+- develop web app for Admin/ traffic control room
+- use deep computer vision to better grasp/understand the environment around,
+- feature engineering (what other features might be affecting traffic in the network)
+- bring this project from simulation to real world
+
+
+# Acknowledgements
+Thanks Andrea. Your repo really helped us in our project.
+
+**References**-
+Andrea Vidali
