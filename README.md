@@ -1,6 +1,9 @@
 # Smart India Hackathon 2020 
 Our cities are expanding and most of the people have to travel more than 2 hours daily to commute between their place of work and stay. These things often lead to work-life imbalance, more stress, impact work performance, etc. We are working for a software solution for smart management of traffic which leads to better travel plans, less stress due to driving, and optimized travel time.
 
+# Acknowledgements
+Thanks Andrea Vidali. Your repo really helped us in our project.
+
 # Solution
 # Deep Sync with AI 
 ## *Sync the flow of city network traffic*
@@ -8,28 +11,24 @@ App uses deep reinforcement learning to come up with policy function to identify
 
 ## *Implementation with Deep Reinforcement Learning*
 It will act as a framework where a deep Q-Learning Reinforcement Learning agent selects the correct traffic light phase at an intersection to maximize traffic efficiency.
+Created custom functions and used different distributions for network traffic
+Each training result is stored in a folder structure, with each result being numbered with an increasing integer.
+Test Mode: test the model versions by running a test episode with comparable results.
+Enabled a dynamic creation of model by specifying the width and the depth of the feedforward neural network for each training.
+The code for the neural network is written using Keras and Tensorflow 2.0.
+Added a settings file (.ini) for both training and testing.
+Added a minimum number of samples required into the memory to begin training.
+Image Recognition for vehicles has been implemneted.
 
-
-# Differentiation factor of the project
-It uses deep reinforcement learning to come with a policy function to identify pairs or groups of traffic signals which can be coordinated. It synchronises traffic signal timings to optimize split, cycle, and offset time.
-Image Recognition is used to detect the presence of vehicles. One traffic signal will be aware of its adjacent traffic signal state and the number of vehicles arriving and departing there, which will help it make efficient decisions about when to release traffic, in which direction, and for how much time.
-
-## *Improved version - "20 August 2020*
-
-*Changelog:*
-- *Each training result is now stored in a folder structure, with each result being numbered with an increasing integer.*
-- *New Test Mode: test the model versions you created by running a test episode with comparable results.*
-- *Enabled a dynamic creation of the model by specifying, for each training, the width and the depth of the feedforward neural network that is going to be used.*
-- *The code for the neural network is written using Keras and Tensorflow 2.0.*
-- *Added a settings file (.ini) for both training and testing.*
-- *Added a minimum number of samples required into the memory to begin training.*
-- *Improved code readability.*
-- *Image Recognition for vehicles has been implemneted.*
-
+## *Features*
+Vehicles detection enables survelliance and tracking
+Coordinate with other transportation services
+Create Green Corridors by specifying particular path as high priority(by assigning high reward points for 'Ambulance/Emergency Vehicles')
+Cluster of 5 intersections act as base unit and Agent.sync() function is called recursively along X and Y axis for each intersection
 
 ## Getting Started
 
-These instructions will get you a copy of the project up and running on your local machine for development and testing purposes. In my opinion, these are the easiest steps to follow to be able to run the algorithm starting from scratch. A computer with an NVIDIA GPU is strongly recommended.
+These instructions will get youp and running this project on your local machine for development and testing purposes. You need to follow these steps to be able to run the algorithm starting from scratch. A computer with an NVIDIA GPU is strongly recommended.
 
 1. Download Anaconda ([official site](https://www.anaconda.com/distribution/#download-section)) and install.
 2. Download SUMO ([official site](https://www.dlr.de/ts/en/desktopdefault.aspx/tabid-9883/16931_read-41000/)) and install.
@@ -44,12 +43,12 @@ I've used the following software versions: Python 3.7, SUMO traffic simulator 1.
 
 ## Running the algorithm
 
-- Now you are ready to run the algorithm. To do so, you need to run the file **training_main.py** by executing the following simple command on the Anaconda prompt or any other terminal and the agent will start the training:
+- Now you are ready to run the algorithm. To do so, you need to run the file **training_main.py** by executing the following command on the Anaconda prompt or terminal and the agent will start the training:
 ```
 python training_main.py
 ```
 
-You don't need to open any SUMO software since everything is loaded and done in the background. If you want to see the training process as it goes, you need to set to *True* the parameter *gui* contained in the file **training_settings.ini**. Keep in mind that viewing the simulation is very slow compared to the background training and you also need to close SUMO-GUI every time an episode ends, which is not practical.
+You don't need to open any SUMO software. Everything is loaded and run in the background. If you want to see the training process, set the parameter *gui* to "true" contained in the file **training_settings.ini**. Keep in mind that viewing the simulation is very slow compared to the background training and you also need to close SUMO-GUI every time an episode ends, which is not practical.
 
 The file **training_settings.ini** contains all the different parameters used by the agent in the simulation. The default parameters are not that optimized, so a bit of testing will likely increase the current performance of the agent.
 
@@ -61,15 +60,15 @@ Now you can finally test the trained agent. To do so, you will run the file **te
 
 ## The code structure
 
-The main file is **training_main.py**. It handles the main loop that starts an episode on every iteration. It also saves the network and 3 graphs: negative reward, cumulative wait time, and average queues. 
+**training_main.py** is the main file. It handles the main loop that starts an episode on every iteration. It saves the network and 3 graphs: negative reward, cumulative wait time, and average queues. 
 
-Overall the algorithm is divided into classes that handle different parts of the training.
-- The **Model** class is used to define everything about the deep neural network and it also contains some functions used to train the network and predict the outputs. In the **model.py** file, two different **model** classes are defined: one used only during the training, one used only during the testing.
+The algorithm is divided into classes that handle different parts of the training.
+- The **Model** class is used to define everything about the DNN and it also contains some functions used to train the network and predict the outputs in the **model.py** file, two different **model** classes are defined: for training and testing.
 - The **Memory** class handle the memorization for the experience replay mechanism. A function is used to add a sample into the memory, while another function retrieves a batch of samples from the memory.
-- The **Simulation** class handles the simulation. In particular, the function *run* allows the simulation of one episode. Also, some other functions are used during *run* to interact with SUMO, for example retrieving the state of the environment (*get_state*), set the next green light phase (*_set_green_phase*) or preprocess the data to train the neural network (*_replay*). There are two files that contain a slightly different **Simulation** class: **training_simulation.py** and **testing_simulation.py**. Which one is loaded depends of course if we are doing the training phase or the testing phase.
+- The **Simulation** class handles the simulation. In particular, the function *run()* allows the simulation of one episode. Also, some other functions are used during *run()* to interact with SUMO, for example retrieving the state of the environment (*get_state*), set the next green light phase (*_set_green_phase*) or preprocess the data to train the neural network (*_replay*). There are two files that contain a slightly different **Simulation** class: **training_simulation.py** and **testing_simulation.py**. Which one is loaded depends if we are doing the training phase or the testing phase.
 - The **TrafficGenerator** class contains the function dedicated to defining the route of every vehicle in one episode. The file created is *episode_routes.rou.xml* which is placed in the "intersection" folder.
-- The **Visualization** class is just used for plotting data.
-- In the **utils.py** file are contained some directory-related functions, such as automatically handle the creations of new model versions and the loading of existing models for the testing.
+- The **Visualization** class is used for plotting data.
+- In the **utils.py** file contains some directory-related functions, such as automatically handling the creations of new model versions and the loading of existing models for the testing.
 - The **movementdetection.py** file contains the code to detect vehicle presence, for semantic segmentation, and creating velocity and position matrices.
 
 In the "intersection" folder there is a file called *environment.net.xml* which defines the structure of the environment, and it was created using SUMO NetEdit. The other file *sumo_config.sumocfg* it is a linker between the environment file and the route file. 
@@ -129,19 +128,6 @@ The settings used during the testing and contained in the file **testing_setting
 - **Reward**: change in *cumulative waiting time* between actions, where the waiting time of a car is the number of seconds spent with speed=0 since the spawn; *cumulative* means that every waiting time of every car located in an incoming lane is summed. When a car leaves an oncoming lane (i.e. crossed the intersection), its waiting time is not considered anymore, therefore it is a positive reward for the agent.
 - **Learning mechanism**: the agent make use of the Q-learning equation *Q(s,a) = reward + gamma • max Q'(s',a')* to update the action values and a deep neural network to learn the state-action function. The neural network is fully connected with 80 neurons as input (the state), 5 hidden layers of 400 neurons each, and the output layers with 4 neurons representing the 4 possible actions. Also, a mechanism of experience replay is implemented: the experience of the agent is stored in a memory and, at the end of each episode, multiple batches of randomized samples are extracted from the memory and used to train the neural network once the action values have been updated with the Q-learning equation.
 
-# Applications of Reinforcement Learning :
-## *1. Reinforcement Learning in Gaming:* 
-Let’s look at an application in the gaming frontier, specifically AlphaGo Zero. Using reinforcement learning, AlphaGo Zero was able to learn the game of Go from scratch. It learned by playing against itself. After 40 days of self-training, Alpha Go Zero was able to outperform the version of Alpha Go known as Master that has defeated world number one Ke Jie. It only used black and white stones from the board as input features and a single neural network. A simple tree search that relies on the single neural network is used to evaluate positions moves and sample moves without using any Monte Carlo rollouts. 
-
-## *2. Applications in Self Driving Cars:*
-Various papers have proposed Deep Reinforcement Learning for autonomous driving. In self-driving cars, there are various aspects to consider, such as speed limits at various places, drivable zones, avoiding collisions — just to mention a few. 
-Some of the autonomous driving tasks where reinforcement learning could be applied include trajectory optimization, motion planning, dynamic pathing, controller optimization, and scenario-based learning policies for highways. 
-For example, parking can be achieved by learning automatic parking policies. Lane changing can be achieved using Q-Learning while overtaking can be implemented by learning an overtaking policy while avoiding collision and maintaining a steady speed thereafter.
-
-## *3. Application in NLP (Natural Language Processing):*
-In NLP, RL can be used in text summarization, question answering, and machine translation.
-
-
 # Future Enhancements
 Training the NN over network consisting of multiple intersections linked together.
 - Time constraints have prevented us from being able to analyze our approach when multiple intersections are present. It would be interesting to see if the same state-action pairs (Q values) would be learned or if the presence of multiple nodes would cause these to change. Permitted more time we could expand this simulation scope and possibly consider implementing other state values apart from just the vehicle position and velocity matrices, for example, allowing an intersection to see the states of its neighbors. Such increases in state-space could prove beneficial to improving traffic flow, but can also greatly increase learning time.
@@ -151,10 +137,3 @@ Training the NN over network consisting of multiple intersections linked togethe
 - use deep computer vision to better grasp/understand the environment around,
 - feature engineering (what other features might be affecting traffic in the network)
 - bring this project from simulation to real world
-
-
-# Acknowledgements
-Thanks Andrea. Your repo really helped us in our project.
-
-**References**-
-Andrea Vidali
