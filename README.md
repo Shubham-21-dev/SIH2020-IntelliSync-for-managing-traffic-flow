@@ -11,14 +11,6 @@ App uses deep reinforcement learning to come up with policy function to identify
 
 ## *Implementation with Deep Reinforcement Learning*
 It will act as a framework where a deep Q-Learning Reinforcement Learning agent selects the correct traffic light phase at an intersection to maximize traffic efficiency.
-Created custom functions and used different distributions for network traffic
-Each training result is stored in a folder structure, with each result being numbered with an increasing integer.
-Test Mode: test the model versions by running a test episode with comparable results.
-Enabled a dynamic creation of model by specifying the width and the depth of the feedforward neural network for each training.
-The code for the neural network is written using Keras and Tensorflow 2.0.
-Added a settings file (.ini) for both training and testing.
-Added a minimum number of samples required into the memory to begin training.
-Image Recognition for vehicles has been implemneted.
 
 ## *Features*
 Vehicles detection enables survelliance and tracking
@@ -108,6 +100,15 @@ The settings used during the testing and contained in the file **testing_setting
 - **sumocfg_file_name**: the name of the .sumocfg file inside the *intersection* folder.
 - **model_to_test**: the version of the model to load for the test. 
 
+## *New changes* - 
+1. Each training result is stored in a folder structure, with each result being numbered with an increasing integer.
+2. Test Mode: test the model versions by running a test episode with comparable results.
+3. Enabled a dynamic creation of model by specifying the width and the depth of the feedforward neural network for each training.
+4. The code for the neural network is written using Keras and Tensorflow 2.0.
+5. Added a settings file (.ini) for both training and testing.
+6. Added a minimum number of samples required into the memory to begin training.
+7. Image Recognition for vehicles has been implemneted.
+
 ## The Deep Q-Learning Agent
 
 **Framework**: Q-Learning with deep neural network.
@@ -118,7 +119,7 @@ The settings used during the testing and contained in the file **testing_setting
 
 **Traffic generation**: For every episode, 1000 cars are created. The car arrival timing is defined according to a Weibull distribution with shape 2 (a fast increase of arrival until peak just before the mid-episode, then slow decreasing). 75% of vehicles spawned will go straight, 25% will turn left or right. Every vehicle has the same probability to be spawned at the beginning of every arm. On every episode the cars are generated randomly so is not possible to have two equivalent episodes in term of vehicle's arrival layout.
 
-**Agent ( Traffic Signal Control System - TLCS)**:
+**How Agent make decisions??**:
 - **State**: discretization of oncoming lanes into presence cells, which identify the presence or absence of at least 1 vehicle inside them. There are 20 cells per arm. 10 of them are placed along the left-most lane while the other 10 are placed in the other three lanes. 80 cells in the whole intersection.
 - **Action**: choice of the traffic light phase from 4 possible predetermined phases, which are described below. Every phase has a duration of 10 seconds. When the phase changes, a yellow phase of 4 seconds is activated.
   - North-South Advance: green for lanes in the north and south arm dedicated to turn right or go straight.
