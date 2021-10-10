@@ -2,7 +2,7 @@
 Our cities are expanding and most of the people have to travel more than 2 hours daily to commute between their place of work and stay. These things often lead to work-life imbalance, more stress, impact work performance, etc. We are working for a software solution for smart management of traffic which leads to better travel plans, less stress due to driving, and optimized travel time.
 
 # Acknowledgements
-Thanks Andrea Vidali. Your repo really helped us in our project.
+Thanks Andrea Vidali. Your repo really helped us in understanding of traffic system and application of reinforcement learning in our project.
 
 # Solution
 # Deep Sync with AI 
